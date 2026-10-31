@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "capcut-api": {
+      "type": "stdio",
+      "command": "./scripts/run_mcp_server.sh",
+      "args": []
+    }
+  }
+}

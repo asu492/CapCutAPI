@@ -292,7 +292,25 @@ python mcp_server.py
 
 ## 🔧 MCP Integration Guide
 
-### 📱 Client Configuration
+### 🤖 Claude Code
+
+The repository includes a project-scoped `.mcp.json`, so Claude Code finds the server on its own:
+
+```bash
+python3 -m venv venv-mcp
+venv-mcp/bin/pip install -r requirements.txt -r requirements-mcp.txt
+claude   # run from the repo root and approve the "capcut-api" server when prompted
+```
+
+`scripts/run_mcp_server.sh` starts the server. It uses `$CAPCUT_PYTHON` if that's set; otherwise it uses `venv-mcp/`, `.venv/` or `venv/` in the repo, and falls back to `python3`. To make the server available from any directory, register it at user scope:
+
+```bash
+claude mcp add --scope user capcut-api -- /path/to/CapCutAPI/scripts/run_mcp_server.sh
+```
+
+Then ask Claude for an edit, for example: *"Create a 1080x1920 draft, add https://example.com/clip.mp4 with a fade-in title saying Hello, and save it to CapCut."* `CLAUDE.md` gives Claude the workflow it should follow.
+
+### 📱 Other Clients
 
 Create or update `mcp_config.json` configuration file:
 
